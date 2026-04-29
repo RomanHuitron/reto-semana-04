@@ -1,5 +1,8 @@
 # Sistema de Inventario Modular
 
+## Autor
+Huitron Carranco Jose Roman
+
 ## Descripcion
 Sistema que genera reportes de productos que necesitan reorden.
 
