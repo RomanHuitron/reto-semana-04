@@ -1,3 +1,6 @@
+# utils/__init__.py
+utils_init = '''
 """Utilidades del sistema de inventario."""
-from .validators import validar_sku, validar_precio, validar_stock, validar_producto
+from .validators import validar_sku, validar_precio, validar_stock
 from .io import leer_inventario, escribir_reporte
+'''
