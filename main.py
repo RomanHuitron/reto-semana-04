@@ -1,10 +1,10 @@
-
 from models.producto import Producto
 from utils.validators import validar_producto
 from utils.io import leer_inventario, escribir_reporte
 
 # Configuracion
-ARCHIVO_INVENTARIO = "data/inventario.csv"
+# ARCHIVO_INVENTARIO = "data/inventario.csv"  # Ruta original
+ARCHIVO_INVENTARIO = "data/entrada_facil.csv" # Ruta de la versión corregida
 ARCHIVO_REPORTE = "outputs/reporte_inventario.csv"
 
 
@@ -50,8 +50,11 @@ def filtrar_necesitan_reorden(productos):
 
 
 def ordenar_por_faltantes(productos):
-    """Ordena por unidades faltantes (descendente)."""
-    return sorted(productos, key=lambda p: p.unidades_faltantes(), reverse=True)
+    """Ordena por unidades faltantes (descendente) y luego alfabeticamente por nombre."""
+    return sorted(
+        productos,
+        key=lambda p: (-p.unidades_faltantes(), p.nombre.lower())
+    )
 
 
 def main():
@@ -72,7 +75,7 @@ def main():
     necesitan_reorden = filtrar_necesitan_reorden(productos)
     print(f"Productos que necesitan reorden: {len(necesitan_reorden)}")
     
-    # 4. Ordenar por unidades faltantes
+    # 4. Ordenar por unidades faltantes y luego alfabeticamente
     necesitan_reorden = ordenar_por_faltantes(necesitan_reorden)
     
     # 5. Mostrar resumen
